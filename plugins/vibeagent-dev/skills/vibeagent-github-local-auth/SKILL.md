@@ -9,6 +9,6 @@ private repo는 **사용자 본인의 GitHub 인증**으로 clone/push 합니다
 - 확인: `gh auth status`
 - 없으면: `gh auth login` (GitHub CLI) 또는 편집기(VS Code 등)의 GitHub 로그인.
 - push는 **develop 브랜치로만**. main 직접 push 금지(Vercel 비멤버 author 차단 + 배포 정책).
-- gh CLI는 **clone/push 인증 전용**입니다. **PR 생성/머지(`gh pr ...`)에 쓰지 마세요** — develop에 push 하면 워크플로우가 PR·보안 게이트·머지를 자동 처리합니다(수동 PR은 충돌·게이트 우회).
+- gh CLI는 **clone/push 인증 + 조회 전용**입니다. **조회는 허용** — `gh run list`/`gh run view`/`gh pr checks`/`gh pr view --comments` 로 빌드·게이트 로그를 더 깊이 볼 수 있습니다(인프라 디버깅용). 하지만 **PR 생성·머지(`gh pr create`/`gh pr merge`)는 금지** — develop에 push 하면 워크플로우가 PR·보안 게이트·머지를 자동 처리합니다(수동 PR은 충돌·게이트 우회).
 - 권한 오류(403/404)면 사용자의 GitHub 계정이 해당 org repo 멤버인지, SAML SSO 인가가 유효한지 확인하도록 안내.
 - **VibeAgent 서버의 GitHub 토큰을 요청하지 마세요.**
