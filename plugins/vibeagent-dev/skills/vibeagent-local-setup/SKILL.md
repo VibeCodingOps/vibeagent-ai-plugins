@@ -42,3 +42,4 @@ description: VibeAgent 프로젝트를 로컬에 clone하고 공개 환경변수
 - 그러면 GitHub Actions가 **자동으로**: develop→main PR 생성 → 빌드 + AI 보안 게이트 → 통과 시 자동 머지 → Vercel production 배포.
 - **PR을 직접 만들거나(`gh pr create`) 머지하지 마세요. main에 직접 push 하지 마세요.** 워크플로우가 PR·게이트·머지를 다 처리하므로, 수동 PR은 충돌·중복이고 보안 게이트를 우회합니다.
 - gh CLI는 PR 작업용이 아니라 **clone/push 인증용**입니다 — push 인증만 되면(키체인/편집기 로그인 등) gh 없어도 배포됩니다.
+- 푸시 후 **빌드나 AI 보안 게이트가 막히면**: `get_pr_gate_status`(빌드·게이트 상태와 실패/BLOCK 사유)·`get_deploy_logs`(Vercel 빌드 로그)로 원인을 확인하세요(skill: vibeagent-infra-ops). 더 깊은 로그는 `gh run view`/`gh pr checks` 조회.

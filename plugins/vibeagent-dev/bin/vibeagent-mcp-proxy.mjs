@@ -35,7 +35,7 @@ const TOOLS = [
   { name: 'get_migrations', description: '적용된 Supabase 마이그레이션 버전 목록을 반환합니다(read-only).', inputSchema: NOARGS },
   {
     name: 'apply_supabase_change',
-    description: '테이블·컬럼을 생성하거나 컬럼을 추가합니다(DROP/DELETE 불가, owner + GitHub 쓰기 권한 필요).',
+    description: '테이블·컬럼을 생성하거나 컬럼을 추가합니다(DROP/DELETE 불가, 편집자/소유자 + GitHub 쓰기 권한 필요).',
     inputSchema: {
       type: 'object',
       properties: {
@@ -70,7 +70,7 @@ const TOOLS = [
     },
   },
   { name: 'get_vercel_status', description: '최근 배포 상태를 반환합니다(read-only). 배포주소는 *.vercel.app 만 노출.', inputSchema: NOARGS },
-  { name: 'request_vercel_deploy', description: 'production 재배포를 요청합니다(owner + GitHub 쓰기 권한 필요).', inputSchema: NOARGS },
+  { name: 'request_vercel_deploy', description: 'production 재배포를 요청합니다(편집자/소유자 + GitHub 쓰기 권한 필요).', inputSchema: NOARGS },
   {
     name: 'get_deploy_logs',
     description: 'Vercel 빌드/배포 실패 로그를 반환합니다(read-only). 기본은 에러 요약, includeFull=true 면 전체 빌드 로그.',
@@ -89,7 +89,7 @@ const TOOLS = [
   {
     name: 'set_vercel_env',
     description:
-      'Vercel 환경변수를 추가/수정합니다(owner + GitHub 쓰기 권한 필요). ⚠️ 기존 키 덮어쓰기 전 사용자 확인 필수. 적용하려면 request_vercel_deploy 재배포 필요(소스 .env 미반영).',
+      'Vercel 환경변수를 추가/수정합니다(편집자/소유자 + GitHub 쓰기 권한 필요). ⚠️ 기존 키 덮어쓰기 전 사용자 확인 필수. 적용하려면 request_vercel_deploy 재배포 필요(소스 .env 미반영).',
     inputSchema: {
       type: 'object',
       properties: { key: { type: 'string' }, value: { type: 'string' } },
@@ -98,7 +98,7 @@ const TOOLS = [
   },
   {
     name: 'unset_vercel_env',
-    description: 'Vercel 환경변수를 삭제합니다(잘못 설정한 키 회수용, owner + GitHub 쓰기 권한 필요). 적용하려면 재배포 필요.',
+    description: 'Vercel 환경변수를 삭제합니다(잘못 설정한 키 회수용, 편집자/소유자 + GitHub 쓰기 권한 필요). 적용하려면 재배포 필요.',
     inputSchema: { type: 'object', properties: { key: { type: 'string' } }, required: ['key'] },
   },
   {
@@ -108,7 +108,7 @@ const TOOLS = [
   },
   {
     name: 'create_storage_bucket',
-    description: '스토리지 버킷을 생성합니다(파일 업로드 기능용, owner + GitHub 쓰기 권한 필요).',
+    description: '스토리지 버킷을 생성합니다(파일 업로드 기능용, 편집자/소유자 + GitHub 쓰기 권한 필요).',
     inputSchema: {
       type: 'object',
       properties: {
