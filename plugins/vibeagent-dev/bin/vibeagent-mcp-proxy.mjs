@@ -23,7 +23,8 @@ const key = createHash('sha256').update(MCP_URL).digest('hex').slice(0, 16);
 const TOKEN_PATH = join(homedir(), '.config', 'vibeagent', `${key}.json`);
 
 const PROTOCOL_VERSION = '2025-06-18';
-const SERVER_INFO = { name: 'vibeagent-local-ai', version: '0.1.0' };
+// version 은 마켓플레이스 배포 시 아래 placeholder 가 실제 버전으로 치환됨(단일 소스: src/lib/pluginVersion.ts).
+const SERVER_INFO = { name: 'vibeagent-local-ai', version: '0.2.0' };
 
 const NOARGS = { type: 'object', properties: {} };
 const TOOLS = [
