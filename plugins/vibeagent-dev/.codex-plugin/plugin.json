@@ -1,6 +1,6 @@
 {
   "name": "vibeagent-dev",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "VibeAgent 클라우드 프로젝트를 로컬에서 이어 개발하기 위한 스킬 + 원격 MCP 커넥터(secretless proxy).",
   "skills": "./skills/",
   "mcpServers": "./.mcp.codex.json"
