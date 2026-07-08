@@ -24,12 +24,13 @@ const TOKEN_PATH = join(homedir(), '.config', 'vibeagent', `${key}.json`);
 
 const PROTOCOL_VERSION = '2025-06-18';
 // version 은 마켓플레이스 배포 시 아래 placeholder 가 실제 버전으로 치환됨(단일 소스: src/lib/pluginVersion.ts).
-const SERVER_INFO = { name: 'vibeagent-local-ai', version: '0.3.0' };
+const SERVER_INFO = { name: 'vibeagent-local-ai', version: '0.4.0' };
 
 const NOARGS = { type: 'object', properties: {} };
 const TOOLS = [
   { name: 'status', description: '현재 브리지 연결의 프로젝트·스코프·인프라 준비 상태를 반환합니다.', inputSchema: NOARGS },
-  { name: 'get_public_env', description: '로컬 .env 에 쓸 공개값(Supabase URL·anon key)만 반환합니다. secret 미포함.', inputSchema: NOARGS },
+  { name: 'get_public_env', description: '로컬 .env 에 쓸 공개값(Supabase URL·anon key)만 반환합니다. secret 미포함. 미준비 시 notReadyReason(+ stalled:true = 연결 중단, 웹에서 재연동 필요)로 상태를 알립니다.', inputSchema: NOARGS },
+  { name: 'get_service_role_key', description: '로컬 .env.development.local 용 SUPABASE_SERVICE_ROLE_KEY 를 반환합니다(편집자/소유자 + GitHub 쓰기 권한 필요). 받은 값은 파일에만 기록 — 채팅 출력·커밋 금지.', inputSchema: NOARGS },
   { name: 'get_project_manifest', description: 'clone/로컬 실행에 필요한 repo·브랜치·배포주소(*.vercel.app) 정보를 반환합니다.', inputSchema: NOARGS },
   { name: 'get_supabase_schema', description: 'public 스키마의 테이블·컬럼 구조를 반환합니다(read-only).', inputSchema: NOARGS },
   { name: 'get_rls_status', description: '테이블별 RLS 활성 여부와 정책 목록을 반환합니다(read-only).', inputSchema: NOARGS },
